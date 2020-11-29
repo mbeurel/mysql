@@ -19,9 +19,10 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.tcp.routers.mysql.rule=HostSNI(`*`)"
-      - "traefik.tcp.services.mysql.loadbalancer.server.port=3306"
       - "traefik.tcp.routers.mysql.service=mysql"
       - "traefik.tcp.routers.mysql.tls=false"
+      - "traefik.tcp.services.mysql.loadbalancer.server.port=mysql"
+      - "traefik.tcp.routers.mysql.entryPoints=mysql"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
       TZ: "${MYSQL_TZ}"
